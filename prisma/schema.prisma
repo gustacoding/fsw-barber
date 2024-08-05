@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
+  id        String    @id @default(uuid())
   email     String
   name      String
   bookings  Booking[]
@@ -17,10 +17,10 @@ model User {
 }
 
 model Barbershop {
-  id          String              @id @default(cuid())
+  id          String              @id @default(uuid())
   name        String
   address     String
-  phones      String
+  phones      String[]
   description String
   imageUrl    String
   createdAt   DateTime            @default(now())
@@ -29,7 +29,7 @@ model Barbershop {
 }
 
 model BarbershopService {
-  id           String     @id @default(cuid())
+  id           String     @id @default(uuid())
   name         String
   description  String
   imageUrl     String
@@ -40,7 +40,7 @@ model BarbershopService {
 }
 
 model Booking {
-  id        String            @id @default(cuid())
+  id        String            @id @default(uuid())
   userId    String
   user      User              @relation(fields: [userId], references: [id])
   serviceId String
